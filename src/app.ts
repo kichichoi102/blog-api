@@ -4,6 +4,7 @@ import Logger from './loaders/logger';
 
 async function startServer() {
   const app = express();
+  await require('./loaders').default({ expressApp: app });
 
   app.get('/', (req, res) => {
     res.send('Hello World');
