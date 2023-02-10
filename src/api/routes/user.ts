@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express';
-const route = Router();
 
 // ik ur not supposed to have business logic in controllers
 // but im learning as i go
@@ -237,10 +236,20 @@ const users = [
   },
 ];
 
+const route = Router();
+
 export default (app: Router) => {
   app.use('/users', route);
 
-  route.get('/users', (req: Request, res: Response) => {
-    res.send(users[0]);
+  app.get('/users', (req: Request, res: Response) => {
+    return res.send(users).status(200);
+  });
+
+  app.get('/users/:id', (req: Request, res: Response) => {
+    const user = users.find(u => u.id == parseInt(req.params.id));
+    if (!user) {
+      res.send(`The User with id ${req.params.id} was not found`).status(404);
+    }
+    res.send(user).status(200);
   });
 };

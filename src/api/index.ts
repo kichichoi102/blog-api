@@ -3,8 +3,8 @@ import user from './routes/user'
 
 
 export default () => {
-    const app = Router();
-    user(app);
+    const router = Router();
+    user(router);
 
-    return app
+    return router
 }
