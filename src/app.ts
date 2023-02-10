@@ -1,5 +1,6 @@
 import express from 'express';
 import config from './config';
+import Logger from './loaders/logger';
 
 async function startServer() {
   const app = express();
@@ -12,10 +13,14 @@ async function startServer() {
 
   app
     .listen(port, () => {
-      console.log(`Listening on port: ${port}`);
+      Logger.info(`
+      ##############################
+      Server listening on port: ${config.port} 
+      ##############################
+      `);
     })
     .on('error', err => {
-      console.log(err);
+      Logger.error(err);
       process.exit(1);
     });
 }
