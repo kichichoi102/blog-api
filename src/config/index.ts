@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 
 enum ENV_TYPE {
-  DEVELOPMENT = "DEVELOPMENT",
-  PRODUCTION = "PRODUCTION"
+  DEVELOPMENT = "development",
+  PRODUCTION = "production"
 }
 
 process.env.NODE_ENV = process.env.NODE_ENV || ENV_TYPE.DEVELOPMENT;
