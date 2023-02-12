@@ -1,6 +1,13 @@
 import { Router, Request, Response } from 'express';
 
-const posts = [
+type Post = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string
+}
+
+const posts: Post[] = [
   {
     userId: 1,
     id: 1,
@@ -609,19 +616,27 @@ export default (app: Router) => {
   app.use('/posts', route);
 
   app.get('/posts', (req: Request, res: Response) => {
-    let postRes = posts;
 
-    if (req.query.userId) {
-      postRes = posts.filter(p => p.userId == parseInt(req.query.userId as string));
+    const { userId } = req.query
+
+    if (!userId) {
+      res.status(404);
     }
-    return res.send(postRes).status(200);
+
+    const userPosts = posts.filter(p => p.userId == userId);
+
+    return res.send(userPosts).status(200);
   });
 
   app.get('/posts/:id', (req: Request, res: Response) => {
-    const post = posts.find(p => p.id == parseInt(req.params.id));
+    const { id } = req.params
+    
+    const post = posts.find(p => p.id === parseInt(id));
+
     if (!post) {
       res.send(`The Post with id: ${req.params.id} was not found`).status(404);
     }
-    res.send(post).status(200);
+    
+    return res.send(post).status(200);
   });
 };

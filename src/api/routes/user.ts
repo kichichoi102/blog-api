@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 
 // ik ur not supposed to have business logic in controllers
 // but im learning as i go
-// im only human 😔
+// im only human 😔 -> ?
 const users = [
   {
     id: 1,
@@ -246,10 +246,14 @@ export default (app: Router) => {
   });
 
   app.get('/users/:id', (req: Request, res: Response) => {
-    const user = users.find(u => u.id == parseInt(req.params.id));
+    const { id } = req.params
+
+    const user = users.find(u => u.id == parseInt(id));
+
     if (!user) {
       res.send(`The User with id ${req.params.id} was not found`).status(404);
     }
-    res.send(user).status(200);
+
+    return res.send(user).status(200);
   });
 };
