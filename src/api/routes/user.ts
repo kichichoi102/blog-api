@@ -13,7 +13,7 @@ export default (app: Router) => {
   app.get('/users/:id', (req: Request, res: Response) => {
     const { id } = req.params
 
-    const user = users.find(u => u.id === id as number);
+    const user = users.find(u => u.id === Number(id) as number);
 
     if (!user) {
       res.send(`The User with id ${id} was not found`).status(404);

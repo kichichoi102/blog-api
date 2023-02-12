@@ -9,12 +9,15 @@ export default (app: Router) => {
   app.get('/posts', (req: Request, res: Response) => {
 
     const { userId } = req.query
+    let userPosts = []
 
-    if (!userId) {
-      res.status(404);
+    // userId param is optional not mandatory ya logic was broken @kihoondavidchoi
+    // ya sure ur a fullstackdev...?
+    if (userId) {
+      userPosts = posts.filter(p => p.userId === Number(userId) as number);
+    } else {
+      userPosts = posts
     }
-
-    const userPosts = posts.filter(p => p.userId === userId as number);
 
     return res.send(userPosts).status(200);
   });
@@ -22,7 +25,7 @@ export default (app: Router) => {
   app.get('/posts/:id', (req: Request, res: Response) => {
     const { id } = req.params
     
-    const post = posts.find(p => p.id === id as number);
+    const post = posts.find(p => p.id === Number(id) as number);
 
     if (!post) {
       res.send(`The Post with id: ${req.params.id} was not found`).status(404);
