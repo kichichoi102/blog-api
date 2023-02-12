@@ -10,13 +10,13 @@ async function startServer() {
     res.send('Hello World');
   });
 
-  const port = config.port;
+  const PORT = config.port || 4000;
 
   app
-    .listen(port, () => {
+    .listen(PORT, () => {
       Logger.info(`
       ##############################
-      Server listening on port: ${config.port} 
+      Server listening on port: ${PORT} 
       ##############################
       `);
     })
