@@ -4,6 +4,7 @@ import Logger from './loaders/logger';
 
 async function startServer() {
   const app = express();
+  // call loader services
   await require('./loaders').default({ expressApp: app });
 
   app.get('/', (req, res) => {
