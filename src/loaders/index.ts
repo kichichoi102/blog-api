@@ -5,8 +5,8 @@ import expressLoader from './express';
 import Logger from './logger';
 
 export default async ({ expressApp }) => {
-  await initializer(client);
-  await seeder(client)
+  // await initializer(client);
+  // await seeder(client)
 
   await expressLoader({ app: expressApp });
   Logger.info('Express Loaded');

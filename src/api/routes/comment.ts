@@ -9,6 +9,7 @@ export default (app: Router) => {
   app.get('/comments', (req: Request, res: Response) => {
     const { postId, email } = req.query;
     let commentRes = comments;
+    // call service with method
 
     if (postId) {
       commentRes = comments.filter(p => p.postId === (Number(postId) as number));

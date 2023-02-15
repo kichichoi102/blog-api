@@ -1,0 +1,4 @@
+inherits db.ts
+makes call to db
+
+comments.ts

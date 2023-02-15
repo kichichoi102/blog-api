@@ -5,13 +5,13 @@ export default async client => {
   if (!commentsTableExists) {
     await client.schema
       .createTable('comments', table => {
-        table.integer('postId').unsigned().references('posts.id');
         table.increments('id').primary();
+        table.integer('postId').unsigned().references('id').inTable('posts');
+        table.integer('userId').unsigned().references('id').inTable('users');
         table.string('name', 255).notNullable();
-        table.string('email', 255).notNullable();
         table.text('body').notNullable();
       })
-      .then(() => logger.info('Comments Table created'))
+      .then(() => logger.info('Comments Table Created Successfully!'))
       .catch(err => logger.error(err));
   }
 };

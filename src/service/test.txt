@@ -1,0 +1,4 @@
+SERVICE DIR
+gets called by api/route
+first_name = firstName (params passed from routes)
+calls DAL
