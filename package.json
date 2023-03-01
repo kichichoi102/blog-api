@@ -5,6 +5,9 @@
   "main": "src/app.ts",
   "scripts": {
     "build": "tsc",
+    "migrate:latest": "knex migrate:latest --knexfile ./src/db/knexfile.ts",
+    "migrate:up": "knex migrate:up --knexfile ./src/db/knexfile.ts",
+    "migrate:down": "knex migrate:down --knexfile ./src/db/knexfile.ts",
     "start": "nodemon",
     "inspect": "nodemon --inspect src/app.ts",
     "lint": "npm run lint:js",

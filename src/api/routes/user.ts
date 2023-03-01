@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { users } from './mock';
 
+const userController = require('../../controller/users')
 const route = Router();
 
 export default (app: Router) => {
@@ -21,4 +22,6 @@ export default (app: Router) => {
 
     return res.send(user).status(200);
   });
+
+  app.post('/users', userController.createUser)
 };

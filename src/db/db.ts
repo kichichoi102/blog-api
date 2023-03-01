@@ -7,5 +7,5 @@ const knexfile = require('./knexfile');
 // TODO in prod, dont access knexfile.development directly
 // but decide from env vars which config to use
 
-const db = knex(knexfile.development);
-export default db;
+const db1 = knex(knexfile.development);
+module.exports = db1;
