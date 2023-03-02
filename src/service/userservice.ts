@@ -17,6 +17,11 @@ class UserService {
   async readUserById(id) {
     return await userDAO.readUserById(id)
   }
+
+  async updateUserById(id, userDTO) {
+    console.log(userDTO)
+    return await userDAO.createUser(id, userDTO);
+  }
 }
 
 module.exports = new UserService();

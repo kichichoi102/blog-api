@@ -46,6 +46,11 @@ class UserDAO {
     const userData = await db('users').where('id', userId).first()
     return userData
   }
+
+  async updateUserById(id, userDTO) {
+    const updatedUserData = await db('users').where('id', id).update(userDTO)
+    return updatedUserData
+  }
 }
 
 module.exports = new UserDAO();

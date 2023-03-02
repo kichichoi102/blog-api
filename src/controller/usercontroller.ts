@@ -35,17 +35,17 @@ class UserController {
 
   async readUserById(req, res) {
     try {
-        const { id } = req.params;
+      const { id } = req.params;
     } catch (err) {
-        res.status(404).json('id is required')
+      res.status(404).json('id is required');
     }
 
     const { id } = req.params;
-    
+
     try {
       const userData = await userService.readUserById(id);
       if (!userData) {
-        res.status(404).json(`User with id ${id} was not found`)
+        res.status(404).json(`User with id ${id} was not found`);
       }
       res.status(201).json(userData);
     } catch (err) {
@@ -54,8 +54,21 @@ class UserController {
     }
   }
 
-  async updateUser(req, res) {
-    
+  async updateUserById(req, res) {
+    try {
+      const { id } = req.params;
+    } catch (err) {
+      res.status(404).json('id is required');
+    }
+
+    const { id } = req.params;
+    try {
+      const updatedUserData = await userService.updateUserById(id, req.body);
+      res.status(201).json(updatedUserData);
+    } catch (err) {
+      res.status(500).json(err);
+      Logger.error(err);
+    }
   }
 }
 

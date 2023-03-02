@@ -20,5 +20,5 @@ export default (app: Router) => {
   app.get('/users/:id', userController.readUserById);
 
   // update user, find by id
-  app.patch('users/:id', userController.updateUser);
+  app.patch('/users/:id', userController.updateUserById);
 };
