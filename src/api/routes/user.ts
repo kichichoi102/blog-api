@@ -1,27 +1,24 @@
 import { Router, Request, Response } from 'express';
 import { users } from './mock';
 
-const userController = require('../../controller/users')
+const userController = require('../../controller/usercontroller');
 const route = Router();
 
 export default (app: Router) => {
   app.use('/users', route);
 
-  app.get('/users', (req: Request, res: Response) => {
-    return res.send(users).status(200);
-  });
+  // create user
+  app.post('/users', userController.createUser);
 
-  app.get('/users/:id', (req: Request, res: Response) => {
-    const { id } = req.params
+  // read all users
+  app.get('/users', userController.readAllUsers);
 
-    const user = users.find(u => u.id === Number(id) as number);
+  // clear offset value from getall
+  app.get('/users/clear', userController.clearOffset);
 
-    if (!user) {
-      res.send(`The User with id ${id} was not found`).status(404);
-    }
+  // read user by id
+  app.get('/users/:id', userController.readUserById);
 
-    return res.send(user).status(200);
-  });
-
-  app.post('/users', userController.createUser)
+  // update user, find by id
+  app.patch('users/:id', userController.updateUser);
 };

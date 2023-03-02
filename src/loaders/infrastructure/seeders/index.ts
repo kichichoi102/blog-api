@@ -4,6 +4,6 @@ import userSeeder from './userSeeder';
 
 export default async client => {
   await userSeeder(client);
-  await postSeeder(client);
-  await commentSeeder(client);
+  // await postSeeder(client);
+  // await commentSeeder(client);
 };
