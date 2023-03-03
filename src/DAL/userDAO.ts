@@ -43,13 +43,18 @@ class UserDAO {
   }
 
   async readUserById(userId) {
-    const userData = await db('users').where('id', userId).first()
-    return userData
+    const userData = await db('users').where('id', userId).first();
+    return userData;
   }
 
   async updateUserById(id, userDTO) {
-    const updatedUserData = await db('users').where('id', id).update(userDTO)
-    return updatedUserData
+    const updatedUserData = await db('users').where('id', id).update(userDTO, 'id');
+    return updatedUserData;
+  }
+
+  async deleteUserById(id) {
+    const deletedUserId = await db('users').where('id', id).del('id');
+    return deletedUserId;
   }
 }
 

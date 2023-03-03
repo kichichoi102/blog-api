@@ -7,17 +7,17 @@ export async function up(knex: Knex): Promise<void> {
     await knex.schema
       .createTable('users', table => {
         table.increments('id').primary();
-        table.string('name', 255).notNullable();
-        table.string('username', 255).notNullable();
-        table.string('email', 255).notNullable();
-        table.string('street', 255).notNullable();
-        table.string('suite', 255).notNullable();
-        table.string('city', 255).notNullable();
-        table.string('zipcode', 255).notNullable();
-        table.string('lat', 255).notNullable();
-        table.string('lng', 255).notNullable();
-        table.string('phone', 255).notNullable();
-        table.string('website', 255).notNullable();
+        table.string('name', 255).nullable();
+        table.string('username', 255).nullable();
+        table.string('email', 255).nullable();
+        table.string('street', 255).nullable();
+        table.string('suite', 255).nullable();
+        table.string('city', 255).nullable();
+        table.string('zipcode', 255).nullable();
+        table.string('lat', 255).nullable();
+        table.string('lng', 255).nullable();
+        table.string('phone', 255).nullable();
+        table.string('website', 255).nullable();
         table.timestamps(true, true);
       })
       .then(() => console.log('Users Table Created Successfully!'))

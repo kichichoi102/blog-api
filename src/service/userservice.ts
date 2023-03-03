@@ -19,8 +19,11 @@ class UserService {
   }
 
   async updateUserById(id, userDTO) {
-    console.log(userDTO)
-    return await userDAO.createUser(id, userDTO);
+    return await userDAO.updateUserById(id, userDTO);
+  }
+
+  async deleteUserById(id) {
+    return await userDAO.deleteUserById(id);
   }
 }
 

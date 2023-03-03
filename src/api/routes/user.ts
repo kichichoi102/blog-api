@@ -21,4 +21,7 @@ export default (app: Router) => {
 
   // update user, find by id
   app.patch('/users/:id', userController.updateUserById);
+
+  // delete user by id
+  app.delete('/users/:id', userController.deleteUserById);
 };
