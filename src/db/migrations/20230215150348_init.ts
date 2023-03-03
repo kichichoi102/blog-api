@@ -28,7 +28,7 @@ export async function up(knex: Knex): Promise<void> {
   if (!postsTableExists) {
     await knex.schema
       .createTable('posts', table => {
-        table.integer('user_id').unsigned().references('id').inTable('users');
+        table.integer('userId').unsigned().references('id').inTable('users');
         table.increments('id').primary();
         table.string('title', 255).notNullable();
         table.text('body').notNullable();
@@ -43,8 +43,8 @@ export async function up(knex: Knex): Promise<void> {
     await knex.schema
       .createTable('comments', table => {
         table.increments('id').primary();
-        table.integer('post_id').unsigned().references('id').inTable('posts');
-        table.integer('user_id').unsigned().references('id').inTable('users');
+        table.integer('postId').unsigned().references('id').inTable('posts');
+        table.integer('userId').unsigned().references('id').inTable('users');
         table.string('name', 255).notNullable();
         table.text('body').notNullable();
         table.timestamps(true, true);
