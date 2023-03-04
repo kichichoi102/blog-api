@@ -15,7 +15,7 @@ class UserService {
   }
 
   async readUserById(id) {
-    return await userDAO.readUserById(id)
+    return await userDAO.readUserById(id);
   }
 
   async updateUserById(id, userDTO) {
