@@ -15,11 +15,7 @@ async function startServer() {
 
   app
     .listen(PORT, () => {
-      Logger.info(`
-      ##############################
-      Server listening on port: ${PORT} 
-      ##############################
-      `);
+      Logger.info(`Server listening on port: ${PORT} 🚀 🥺`);
     })
     .on('error', err => {
       Logger.error(err);
