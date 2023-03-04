@@ -1,18 +1,18 @@
 import express, { Request, Response, NextFunction } from 'express';
-import bodyParser from 'body-parser'
+import bodyParser from 'body-parser';
 import routes from '@/api';
 import config from '@/config';
 
 export default ({ app }: { app: express.Application }) => {
   // server vibe checkers
   app.get('/status', (req, res) => {
-    res.status(200).end();
+    res.status(200).json({ message: 'OK' }).end();
   });
   app.head('/status', (req, res) => {
     res.status(200).end();
   });
 
-  app.use(bodyParser.json())
+  app.use(bodyParser.json());
 
   // jsonify req.body-> json
   app.use(express.json());
@@ -36,5 +36,5 @@ export default ({ app }: { app: express.Application }) => {
   // Catch All server error handler
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     res.status(err.status || 500).json();
-});
+  });
 };
