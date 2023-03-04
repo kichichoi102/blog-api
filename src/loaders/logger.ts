@@ -22,9 +22,9 @@ const LoggerInstance = winston.createLogger({
     }),
     winston.format.errors({ stack: true }),
     winston.format.splat(),
-    winston.format.json()
+    winston.format.json(),
   ),
-  transports
+  transports,
 });
 
-export default LoggerInstance;
+export { LoggerInstance as Logger };

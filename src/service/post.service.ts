@@ -1,4 +1,4 @@
-const postDAO = require('../DAL/postDAO');
+import { postDAO } from '@/DAL';
 
 class PostService {
   async createPost(postDTO) {
@@ -31,4 +31,4 @@ class PostService {
   }
 }
 
-module.exports = new PostService();
+export const postService = new PostService();

@@ -1,4 +1,4 @@
-const postdb = require('../db/db');
+import { db as postdb } from '@/db';
 
 class PostDAO {
   private offset: number;
@@ -57,4 +57,4 @@ class PostDAO {
   }
 }
 
-module.exports = new PostDAO();
+export const postDAO = new PostDAO();

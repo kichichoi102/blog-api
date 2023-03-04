@@ -1,4 +1,4 @@
-const userdb = require('../db/db');
+import { db as userdb } from '@/db';
 
 class UserDAO {
   private offset: number;
@@ -8,7 +8,7 @@ class UserDAO {
   constructor() {
     this.offset = 0;
     this.limit = 50;
-    this.dbName = 'users'
+    this.dbName = 'users';
   }
 
   async createUser(name, username, email, street, suite, city, zipcode, lat, lng, phone, website) {
@@ -60,4 +60,4 @@ class UserDAO {
   }
 }
 
-module.exports = new UserDAO();
+export const userDAO = new UserDAO();

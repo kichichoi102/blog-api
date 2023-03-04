@@ -1,6 +1,5 @@
-import Logger from '@/loaders/logger';
-
-const userService = require('../service/userservice');
+import { Logger } from '@/loaders/logger';
+import { userService } from '@/service';
 
 class UserController {
   async createUser(req, res) {
@@ -100,4 +99,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+export const userController = new UserController();

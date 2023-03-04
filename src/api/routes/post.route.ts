@@ -1,10 +1,10 @@
+import { postController } from '@/controller';
 import { Router, Request, Response } from 'express';
 import { posts } from './mock';
 
-const postController = require('../../controller/postcontroller');
 const route = Router();
 
-export default (app: Router) => {
+export const postRoute = (app: Router) => {
   app.use('/posts', route);
 
   app.post('/posts', postController.createPost);
@@ -17,7 +17,7 @@ export default (app: Router) => {
 
   app.get('/posts/userId/:userId', postController.readPostsByUserId);
 
-  app.patch('/posts/:id', postController.updatePostById)
+  app.patch('/posts/:id', postController.updatePostById);
 
-  app.delete('/posts/:id', postController.deletePostById)
+  app.delete('/posts/:id', postController.deletePostById);
 };

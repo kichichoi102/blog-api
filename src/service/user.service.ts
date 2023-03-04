@@ -1,4 +1,4 @@
-const userDAO = require('../DAL/userDAO');
+import { userDAO } from '@/DAL';
 
 class UserService {
   async createUser(userDTO) {
@@ -27,4 +27,4 @@ class UserService {
   }
 }
 
-module.exports = new UserService();
+export const userService = new UserService();

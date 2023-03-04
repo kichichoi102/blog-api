@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import user from './routes/user';
-import post from './routes/post';
-import comment from './routes/comment';
+import { userRoute } from './routes/user.route';
+import { commentRoute } from './routes/comment.route';
+import { postRoute } from './routes/post.route';
 
 export default () => {
   const router = Router();
-  user(router);
-  post(router);
-  comment(router);
+  userRoute(router);
+  postRoute(router);
+  commentRoute(router);
 
   return router;
 };

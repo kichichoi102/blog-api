@@ -1,7 +1,8 @@
 export type Comment = {
   postId: number;
   id: number;
-  userId: number;
+  name: string;
   email: string;
   body: string;
+  userId?: number;
 };

@@ -1,6 +1,5 @@
-import Logger from '@/loaders/logger';
-
-const postService = require('../service/postservice');
+import { Logger } from '@/loaders/logger';
+import { postService } from '@/service';
 
 class PostController {
   async createPost(req, res) {
@@ -120,4 +119,4 @@ class PostController {
   }
 }
 
-module.exports = new PostController();
+export const postController = new PostController();

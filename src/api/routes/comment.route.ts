@@ -3,7 +3,7 @@ import { comments } from './mock/comment.mock';
 
 const route = Router();
 
-export default (app: Router) => {
+export const commentRoute = (app: Router) => {
   app.use('/comments', route);
 
   app.get('/comments', (req: Request, res: Response) => {

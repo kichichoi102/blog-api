@@ -1,9 +1,9 @@
+import { userController } from '@/controller';
 import { Router, Request, Response } from 'express';
 
-const userController = require('../../controller/usercontroller');
 const route = Router();
 
-export default (app: Router) => {
+export const userRoute = (app: Router) => {
   app.use('/users', route);
 
   // create user
