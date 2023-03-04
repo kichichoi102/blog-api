@@ -14,12 +14,20 @@ class PostService {
     return postDAO.clearOffset();
   }
 
+  async readPostByPostId(id) {
+    return await postDAO.readPostByPostId(id);
+  }
+
   async readPostsByUserId(userId) {
     return await postDAO.readPostsByUserId(userId);
   }
 
-  async readPostByPostId(id) {
-    return await postDAO.readPostByPostId(id);
+  async updatePostById(id, postDTO) {
+    return await postDAO.updatePostById(id, postDTO);
+  }
+
+  async deletePostById(id) {
+    return await postDAO.deletePostById(id);
   }
 }
 

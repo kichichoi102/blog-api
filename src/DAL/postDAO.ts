@@ -36,14 +36,24 @@ class PostDAO {
     return null;
   }
 
+  async readPostByPostId(id) {
+    const postData = await postdb(this.dbName).where('id', id).first();
+    return postData;
+  }
+
   async readPostsByUserId(userId) {
     const postData = await postdb(this.dbName).where('userId', userId);
     return postData;
   }
 
-  async readPostByPostId(id) {
-    const postData = await postdb(this.dbName).where('id', id).first();
-    return postData;
+  async updatePostById(id, postDTO) {
+    const updatedPostData = await postdb(this.dbName).where('id', id).update(postDTO, 'id');
+    return updatedPostData;
+  }
+
+  async deletePostById(id) {
+    const deletedPostId = await postdb(this.dbName).where('id', id).del('id');
+    return deletedPostId;
   }
 }
 

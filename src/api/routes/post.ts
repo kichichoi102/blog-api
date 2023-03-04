@@ -13,19 +13,11 @@ export default (app: Router) => {
 
   app.get('/posts/clear', postController.clearOffset);
 
-  app.get('/posts/:userId', postController.readPostsByUserId);
-
   app.get('/posts/:id', postController.readPostByPostId);
 
-  app.get('/posts/:id', (req: Request, res: Response) => {
-    const { id } = req.params;
+  app.get('/posts/userId/:userId', postController.readPostsByUserId);
 
-    const post = posts.find(p => p.id === (Number(id) as number));
+  app.patch('/posts/:id', postController.updatePostById)
 
-    if (!post) {
-      res.send(`The Post with id: ${req.params.id} was not found`).status(404);
-    }
-
-    return res.send(post).status(200);
-  });
+  app.delete('/posts/:id', postController.deletePostById)
 };
