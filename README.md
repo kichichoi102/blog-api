@@ -13,7 +13,7 @@ API For Blog Client
 ```bash
 ~/blog-api$ npm run migrate:up
 ```
-2.5 Rollback Down and Migrations
+2.5 Rollback Down and Migrations (if step 2 breaks)
 ```bash
 ~/blog-api$ npm run migrate:down
 ~/blog-api$ npm run migrate:rollback
@@ -25,6 +25,7 @@ API For Blog Client
 4. Start API server
 ```bash
 ~/blog-api$ npm run start
+http://localhost:4000
 ```
 5. To View adminer dashboard, go to browser: `http://localhost:<adminer_port>`
 

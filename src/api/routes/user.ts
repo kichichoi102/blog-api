@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express';
-import { users } from './mock';
 
 const userController = require('../../controller/usercontroller');
 const route = Router();

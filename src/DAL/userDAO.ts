@@ -1,16 +1,18 @@
-const db = require('../db/db');
+const userdb = require('../db/db');
 
 class UserDAO {
   private offset: number;
   private limit: number;
+  private dbName: string;
 
   constructor() {
     this.offset = 0;
     this.limit = 50;
+    this.dbName = 'users'
   }
 
   async createUser(name, username, email, street, suite, city, zipcode, lat, lng, phone, website) {
-    const [id] = await db('users')
+    const [id] = await userdb(this.dbName)
       .insert({
         name: name,
         username: username,
@@ -30,7 +32,7 @@ class UserDAO {
   }
 
   async readAllUsers() {
-    const userData = await db('users').select('*').offset(this.offset).limit(this.limit);
+    const userData = await userdb(this.dbName).select('*').offset(this.offset).limit(this.limit);
     if (userData.length === this.limit) {
       this.offset += this.limit;
     }
@@ -43,17 +45,17 @@ class UserDAO {
   }
 
   async readUserById(userId) {
-    const userData = await db('users').where('id', userId).first();
+    const userData = await userdb(this.dbName).where('id', userId).first();
     return userData;
   }
 
   async updateUserById(id, userDTO) {
-    const updatedUserData = await db('users').where('id', id).update(userDTO, 'id');
+    const updatedUserData = await userdb(this.dbName).where('id', id).update(userDTO, 'id');
     return updatedUserData;
   }
 
   async deleteUserById(id) {
-    const deletedUserId = await db('users').where('id', id).del('id');
+    const deletedUserId = await userdb(this.dbName).where('id', id).del('id');
     return deletedUserId;
   }
 }
