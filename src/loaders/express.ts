@@ -5,6 +5,9 @@ import config from '@/config';
 
 export default ({ app }: { app: express.Application }) => {
   // server vibe checkers
+  app.get('/', (req, res) => {
+    res.status(200).json('Hello World');
+  });
   app.get('/status', (req, res) => {
     res.status(200).json({ message: 'OK' }).end();
   });

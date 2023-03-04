@@ -37,11 +37,13 @@ class PostDAO {
   }
 
   async readPostsByUserId(userId) {
-    return new Error('Not Implemented Error');
+    const postData = await postdb(this.dbName).where('userId', userId);
+    return postData;
   }
 
-  async readPostByPostId(postId) {
-    return new Error('Not Implemented Error');
+  async readPostByPostId(id) {
+    const postData = await postdb(this.dbName).where('id', id).first();
+    return postData;
   }
 }
 

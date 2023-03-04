@@ -11,7 +11,15 @@ class PostService {
   }
 
   clearOffset() {
-    return postDAO.clearOffset()
+    return postDAO.clearOffset();
+  }
+
+  async readPostsByUserId(userId) {
+    return await postDAO.readPostsByUserId(userId);
+  }
+
+  async readPostByPostId(id) {
+    return await postDAO.readPostByPostId(id);
   }
 }
 

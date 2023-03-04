@@ -13,6 +13,10 @@ export default (app: Router) => {
 
   app.get('/posts/clear', postController.clearOffset);
 
+  app.get('/posts/:userId', postController.readPostsByUserId);
+
+  app.get('/posts/:id', postController.readPostByPostId);
+
   app.get('/posts/:id', (req: Request, res: Response) => {
     const { id } = req.params;
 

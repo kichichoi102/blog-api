@@ -38,6 +38,7 @@ class UserController {
       const { id } = req.params;
     } catch (err) {
       res.status(404).json('id is required');
+      Logger.error('id is required')
     }
 
     const { id } = req.params;
