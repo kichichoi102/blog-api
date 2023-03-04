@@ -1,4 +1,4 @@
-import { db as userdb } from '@/db';
+import { devDB as userdb } from '@/db';
 
 class UserDAO {
   private offset: number;

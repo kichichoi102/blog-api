@@ -9,4 +9,4 @@ const knexfile = require('./knexfile');
 
 const db1 = knex(knexfile.development);
 
-export { db1 as db };
+export { db1 as devDB };

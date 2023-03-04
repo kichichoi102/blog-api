@@ -1,4 +1,4 @@
-import { db as postdb } from '@/db';
+import { devDB as postdb } from '@/db';
 
 class PostDAO {
   private offset: number;
