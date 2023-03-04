@@ -38,7 +38,7 @@ class UserController {
       const { id } = req.params;
     } catch (err) {
       res.status(404).json('id is required');
-      Logger.error('id is required')
+      Logger.error('id is required');
     }
 
     const { id } = req.params;
@@ -66,8 +66,8 @@ class UserController {
     try {
       const updatedUserData = await userService.updateUserById(id, req.body);
       if (updatedUserData.length == 0) {
-        res.status(404).json(`User with ID ${id} was not found`)
-        Logger.error(`User with ID ${id} was not found`)
+        res.status(404).json(`User with ID ${id} was not found`);
+        Logger.error(`User with ID ${id} was not found`);
       } else {
         res.status(201).json(updatedUserData);
       }
@@ -77,7 +77,7 @@ class UserController {
     }
   }
 
-  async deleteUserById (req, res) {
+  async deleteUserById(req, res) {
     try {
       const { id } = req.params;
     } catch (err) {
@@ -86,10 +86,10 @@ class UserController {
 
     const { id } = req.params;
     try {
-      const deletedUserId = await userService.deleteUserById(id)
+      const deletedUserId = await userService.deleteUserById(id);
       if (deletedUserId.length == 0) {
-        res.status(404).json(`User with ID ${id} was not found`)
-        Logger.error(`User with ID ${id} was not found`)
+        res.status(404).json(`User with ID ${id} was not found`);
+        Logger.error(`User with ID ${id} was not found`);
       } else {
         res.status(201).json(deletedUserId);
       }

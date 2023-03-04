@@ -9,13 +9,12 @@ export default (app: Router) => {
   app.get('/comments', (req: Request, res: Response) => {
     const { postId, email } = req.query;
     let commentRes = comments;
-    // call service with method
 
     if (postId) {
-      commentRes = comments.filter(p => p.postId === (Number(postId) as number));
-    } 
+      commentRes = comments.filter(p => p.postId === Number(postId));
+    }
     if (email) {
-      commentRes = commentRes.filter(p => p.email === (email as string));
+      commentRes = commentRes.filter(p => p.email === String(email));
     }
 
     res.send(commentRes).status(200);
@@ -24,7 +23,7 @@ export default (app: Router) => {
   app.get('/comments/:id', (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const comment = comments.find(c => c.id === Number(id) as number);
+    const comment = comments.find(c => c.id === Number(id));
 
     if (!comment) {
       res.send(`The Comment with id: ${id} was not found`).status(404);
