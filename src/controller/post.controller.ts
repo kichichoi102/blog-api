@@ -43,7 +43,7 @@ class PostController {
 
     try {
       const postData = await postService.readPostByPostId(id);
-      if (!postData) {
+      if (postData.length === 0) {
         res.status(404).json(`post with id ${id} was not found`);
       }
       res.status(201).json(postData);
@@ -64,8 +64,8 @@ class PostController {
 
     try {
       const postData = await postService.readPostsByUserId(userId);
-      if (!postData) {
-        res.status(400).json(`Posts with userId ${userId} was not found`);
+      if (postData.length === 0) {
+        res.status(404).json(`Posts with userId ${userId} was not found`);
       }
       res.status(201).json(postData);
     } catch (err) {
@@ -107,7 +107,7 @@ class PostController {
     try {
       const deletedPostId = await postService.deletePostById(id);
       if (deletedPostId.length === 0) {
-        res.status(400).json(`Post with ID ${id} was not found`);
+        res.status(404).json(`Post with ID ${id} was not found`);
         Logger.error(`Post with ID ${id} was not found`);
       } else {
         res.status(201).json(deletedPostId);

@@ -44,7 +44,7 @@ class UserController {
 
     try {
       const userData = await userService.readUserById(id);
-      if (!userData) {
+      if (userData.length === 0) {
         res.status(404).json(`User with id ${id} was not found`);
       }
       res.status(201).json(userData);

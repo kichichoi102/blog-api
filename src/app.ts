@@ -7,10 +7,6 @@ async function startServer() {
   // call loader services
   await require('./loaders').default({ expressApp: app });
 
-  app.get('/', (req, res) => {
-    res.send('Hello World');
-  });
-
   const PORT = config.port || 4000;
 
   app

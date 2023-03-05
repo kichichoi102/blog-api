@@ -1,34 +1,25 @@
 import { Router, Request, Response } from 'express';
 import { comments } from './mock/comment.mock';
+import { commentController } from '@/controller';
 
 const route = Router();
 
 export const commentRoute = (app: Router) => {
   app.use('/comments', route);
 
-  app.get('/comments', (req: Request, res: Response) => {
-    const { postId, email } = req.query;
-    let commentRes = comments;
+  app.post('/comments', commentController.createComment);
 
-    if (postId) {
-      commentRes = comments.filter(p => p.postId === Number(postId));
-    }
-    if (email) {
-      commentRes = commentRes.filter(p => p.email === String(email));
-    }
+  app.get('/comments', commentController.readAllComments);
 
-    res.send(commentRes).status(200);
-  });
+  app.get('/comments/clear', commentController.clearOffset);
 
-  app.get('/comments/:id', (req: Request, res: Response) => {
-    const { id } = req.params;
+  app.get('/comments/:id', commentController.readCommentByCommentId);
 
-    const comment = comments.find(c => c.id === Number(id));
+  app.get('/comments/postId/:postId', commentController.readCommentsByPostId);
 
-    if (!comment) {
-      res.send(`The Comment with id: ${id} was not found`).status(404);
-    }
+  app.get('/comments/userId/:userId', commentController.readCommentsByUserId);
 
-    res.send(comment).status(200);
-  });
+  app.patch('/comments/:id', commentController.updateCommentById);
+
+  app.delete('/comments/:id', commentController.deleteCommentById);
 };

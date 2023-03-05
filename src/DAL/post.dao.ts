@@ -3,16 +3,16 @@ import { devDB as postdb } from '@/db';
 class PostDAO {
   private offset: number;
   private limit: number;
-  private dbName: string;
+  private tableName: string;
 
   constructor() {
     this.offset = 0;
     this.limit = 50;
-    this.dbName = 'posts';
+    this.tableName = 'posts';
   }
 
   async createPost(userId, title, body) {
-    const [id] = await postdb(this.dbName)
+    const [id] = await postdb(this.tableName)
       .insert({
         userId: userId,
         title: title,
@@ -24,7 +24,7 @@ class PostDAO {
   }
 
   async readAllPosts() {
-    const postData = await postdb(this.dbName).select('*').offset(this.offset).limit(this.limit);
+    const postData = await postdb(this.tableName).select('*').offset(this.offset).limit(this.limit);
     if (postData.length === this.limit) {
       this.offset += this.limit;
     }
@@ -37,22 +37,22 @@ class PostDAO {
   }
 
   async readPostByPostId(id) {
-    const postData = await postdb(this.dbName).where('id', id).first();
+    const postData = await postdb(this.tableName).where('id', id).first();
     return postData;
   }
 
   async readPostsByUserId(userId) {
-    const postData = await postdb(this.dbName).where('userId', userId);
+    const postData = await postdb(this.tableName).where('userId', userId);
     return postData;
   }
 
   async updatePostById(id, postDTO) {
-    const updatedPostData = await postdb(this.dbName).where('id', id).update(postDTO, 'id');
+    const updatedPostData = await postdb(this.tableName).where('id', id).update(postDTO, 'id');
     return updatedPostData;
   }
 
   async deletePostById(id) {
-    const deletedPostId = await postdb(this.dbName).where('id', id).del('id');
+    const deletedPostId = await postdb(this.tableName).where('id', id).del('id');
     return deletedPostId;
   }
 }
