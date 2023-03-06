@@ -27,5 +27,10 @@ export default {
     postgres_port: process.env.POSTGRES_PORT || 5432,
     password: process.env.POSTGRES_PASSWORD,
     adminer_port: process.env.ADMINER_PORT || 8080,
+  },
+  auth0: {
+    audience: process.env.AUDIENCE,
+    issuerBaseURL: process.env.ISSUERBASEURL,
+    tokenSigningAlg: process.env.TOKENSIGNINGALG
   }
 };

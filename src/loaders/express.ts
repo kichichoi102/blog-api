@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import routes from '@/api';
 import config from '@/config';
+import { jwt } from './auth0';
 
 export default ({ app }: { app: express.Application }) => {
   // server vibe checkers
@@ -19,6 +20,10 @@ export default ({ app }: { app: express.Application }) => {
 
   // jsonify req.body-> json
   app.use(express.json());
+
+  // load and enforce authentication on all endpoints
+  app.use(jwt)
+
   // load api routes
   app.use(config.api.prefix, routes());
 
