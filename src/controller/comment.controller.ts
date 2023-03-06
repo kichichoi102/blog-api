@@ -43,7 +43,7 @@ class CommentController {
 
     try {
       const commentData = await commentService.readCommentByCommentId(id);
-      if (commentData.length === 0) {
+      if (!commentData) {
         res.status(404).json(`comment with id ${id} was not found`);
       }
       res.status(201).json(commentData);

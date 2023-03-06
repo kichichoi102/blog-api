@@ -43,7 +43,7 @@ class PostController {
 
     try {
       const postData = await postService.readPostByPostId(id);
-      if (postData.length === 0) {
+      if (!postData) {
         res.status(404).json(`post with id ${id} was not found`);
       }
       res.status(201).json(postData);
