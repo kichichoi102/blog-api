@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express';
-import { comments } from './mock/comment.mock';
 import { commentController } from '@/controller';
 
 const route = Router();

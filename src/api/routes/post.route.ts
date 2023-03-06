@@ -1,6 +1,5 @@
 import { postController } from '@/controller';
 import { Router, Request, Response } from 'express';
-import { posts } from './mock';
 
 const route = Router();
 
