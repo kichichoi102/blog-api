@@ -54,13 +54,11 @@ class CommentController {
   }
 
   async readCommentsByPostId(req, res) {
-    try {
-      const { postId } = req.params;
-    } catch (err) {
-      res.status(404).json('id is required');
-      Logger.error('id is required');
-    }
     const { postId } = req.params;
+    if (!postId) {
+      res.status(404).json('postId is required')
+      Logger.error('readCommentsByPostId: postId is required')
+    }
 
     try {
       const commentData = await commentService.readCommentsByPostId(postId);
@@ -75,13 +73,11 @@ class CommentController {
   }
 
   async readCommentsByUserId(req, res) {
-    try {
-      const { userId } = req.params;
-    } catch (err) {
-      res.status(404).json('id is required');
-      Logger.error('id is required');
-    }
     const { userId } = req.params;
+    if (!userId) {
+      res.status(404).json('userId is required')
+      Logger.error('readCommentsByUserId: userId is required')
+    }
 
     try {
       const commentData = await commentService.readCommentsByUserId(userId);
@@ -96,13 +92,11 @@ class CommentController {
   }
 
   async updateCommentById(req, res) {
-    try {
-      const { id } = req.params;
-    } catch (err) {
-      res.status(404).json('id is required');
-      Logger.error('id is required');
-    }
     const { id } = req.params;
+    if (!id) {
+      res.status(404).json('id is required')
+      Logger.error('updateCommentById: id is required')
+    }
 
     try {
       const updatedCommentData = await commentService.updateCommentById(id, req.body);
@@ -118,13 +112,11 @@ class CommentController {
   }
 
   async deleteCommentById(req, res) {
-    try {
-      const { id } = req.params;
-    } catch (err) {
-      res.status(404).json('id is required');
-      Logger.error('id is required');
-    }
     const { id } = req.params;
+    if (!id) {
+      res.status(404).json('id is required')
+      Logger.error('deleteCommentById: id is required')
+    }
 
     try {
       const deletedCommentId = await commentService.deleteCommentById(id);

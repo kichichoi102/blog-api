@@ -33,14 +33,11 @@ class UserController {
   }
 
   async readUserById(req, res) {
-    try {
-      const { id } = req.params;
-    } catch (err) {
-      res.status(404).json('id is required');
-      Logger.error('id is required');
-    }
-
     const { id } = req.params;
+    if (!id) {
+      res.status(404).json('id is required')
+      Logger.error('readUserById: id is required')
+    }
 
     try {
       const userData = await userService.readUserById(id);
@@ -55,13 +52,11 @@ class UserController {
   }
 
   async updateUserById(req, res) {
-    try {
-      const { id } = req.params;
-    } catch (err) {
-      res.status(404).json('id is required');
-    }
-
     const { id } = req.params;
+    if (!id) {
+      res.status(404).json('id is required')
+      Logger.error('updateUserById: id is required')
+    }
     try {
       const updatedUserData = await userService.updateUserById(id, req.body);
       if (updatedUserData.length == 0) {
@@ -77,13 +72,11 @@ class UserController {
   }
 
   async deleteUserById(req, res) {
-    try {
-      const { id } = req.params;
-    } catch (err) {
-      res.status(404).json('id is required');
-    }
-
     const { id } = req.params;
+    if (!id) {
+      res.status(404).json('id is required')
+      Logger.error('deleteUserById: id is required')
+    }
     try {
       const deletedUserId = await userService.deleteUserById(id);
       if (deletedUserId.length == 0) {

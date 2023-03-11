@@ -7,9 +7,9 @@ require('dotenv').config({path:__dirname+'/./../../.env'});
 
 const config: { [key: string]: Knex.Config } = {
   development: {
-    client: 'postgresql',
+    client: process.env.POSTGRES_CLIENT,
     connection: {
-      database: 'postgres',
+      database: process.env.POSTGRES_USER,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
     },
@@ -18,14 +18,14 @@ const config: { [key: string]: Knex.Config } = {
       max: 10,
     },
     migrations: {
-      tableName: 'knex_migrations',
+      tableName: process.env.MIGRATIONS_TABLE_NAME,
     },
   },
 
   production: {
-    client: 'postgresql',
+    client: process.env.POSTGRES_CLIENT,
     connection: {
-      database: 'postgres',
+      database: process.env.POSTGRES_USER,
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
     },
@@ -34,7 +34,7 @@ const config: { [key: string]: Knex.Config } = {
       max: 10,
     },
     migrations: {
-      tableName: 'knex_migrations',
+      tableName: process.env.MIGRATIONS_TABLE_NAME,
     },
   },
 };
