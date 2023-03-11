@@ -1,12 +1,8 @@
-import client from './infrastructure/postgresClient';
-import initializer from './infrastructure/postgresInitializer';
 import expressLoader from './express';
-import Logger from './logger';
+import { Logger } from './logger';
 
 export default async ({ expressApp }) => {
-  await client.connect();
-  await initializer(client);
-
+  // Register express server, default routes
   await expressLoader({ app: expressApp });
   Logger.info('Express Loaded');
 };
